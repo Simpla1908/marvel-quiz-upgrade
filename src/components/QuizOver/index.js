@@ -1,4 +1,6 @@
 import React, {Fragment,useEffect,useState} from 'react'
+import {GiTrophyCup} from 'react-icons/gi';
+
 
 const QuizOver = React.forwardRef((props,ref) => {
 
@@ -40,7 +42,10 @@ const decision=score>=averageGrade?(
         :
         (
             <Fragment>
-            <p className="successMsg">Bravo , vous etes un expert !</p>
+            <p className="successMsg">
+
+            <GiTrophyCup size='50px'/>   Bravo , vous etes un expert !</p>
+
             <button 
             className="btnResult gameOver"
             onClick={()=>loadLevelQuestions(0)}
