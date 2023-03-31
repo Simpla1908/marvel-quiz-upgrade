@@ -5,6 +5,8 @@ import { getDoc } from 'firebase/firestore';
 import Logout from '../Logout'
 import Quiz from '../Quiz'
 import { Link,useNavigate } from 'react-router-dom';
+import Loader from '../Loader';
+
 
 
 
@@ -56,13 +58,12 @@ const Welcome = props => {
 
   return userSession===null ?(
 
-    <Fragment>
+    <Loader
 
-      <div className="loader"></div>
-      <p>Loading...</p>
-
-
-    </Fragment>
+    loadingMsg={"Authentification..."}
+    styling={{textAlign:'center',color:'#FFFFFF'}}
+   
+   />
     
     ):(
 
