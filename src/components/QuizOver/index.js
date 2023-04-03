@@ -1,19 +1,41 @@
 import React, {Fragment,useEffect,useState} from 'react'
 import {GiTrophyCup} from 'react-icons/gi';
 import Loader from '../Loader';
+import Modal from '../Modal';
+
 
 
 const QuizOver = React.forwardRef((props,ref) => {
 
   const {levelNames,score,maxQuestions,quizLevel,percent,loadLevelQuestions}=props;
 
+  const API_PUBLIC_KEY=process.env.REACT_APP_MARVEL_API_KEY;
+  console.log(API_PUBLIC_KEY);
+  const hash='e9b511e5aaf8702e118a626bb451bcca';
+
   const [asked,setAsked]=useState([]);
+  const [openModal,setOpenModal]=useState(false); 
+
+
 
 useEffect(()=>{
 
     setAsked(ref.current)
 
 },[ref])
+
+const showModal=id=>{
+
+ setOpenModal(true);
+
+}
+
+const hideModal=()=>{
+
+    setOpenModal(false);
+   
+   }
+
 
 const averageGrade=maxQuestions/2; 
 
@@ -97,7 +119,11 @@ asked.map(question=>{
             <td>{question.question}</td>
             <td>{question.answer}</td>
             <td>
-                <button className="btnInfo">Infos</button>
+                <button 
+                className="btnInfo"
+                onClick={()=>showModal(question.heroid)}
+                >Infos
+                </button>
             </td>
 
         </tr>
@@ -163,6 +189,33 @@ asked.map(question=>{
 
 
     </div>
+
+    
+
+    <Modal showModal={openModal} hideModal={hideModal}> 
+
+    <div className="modalHeader">
+
+    <h2>Titre</h2>
+
+    </div>
+    
+    <div className="modalBody">
+
+    <h3>Titre 2</h3>
+
+        
+    </div>
+
+    <div className="modalFooter">
+
+        <button className="modalBtn">Fermer</button>
+        
+    </div>
+
+    
+
+    </Modal>
 
     </Fragment>
 
